@@ -1,0 +1,53 @@
+Practical no:3 spark graphx
+
+1)import org.apache.spark._ scala
+
+2)import org.apache.spark.rdd.RDD 
+
+3)import org.apache.spark.graphx._ 
+
+4)val vertices = Array((1L,("A")),(2L,("B")),(3L,("C"))) scala> val vRDD = sc.parallelize(vertices) 
+
+5)vRDD.take(2)
+
+6)val edges = Array(Edge(1L,2L,1800),Edge(2L,3L,800),Edge(3L,1L,1400)) 
+
+7)val eRDD = sc.parallelize(edges) scala> eRDD.take(2) 
+
+8)val nowhere = "nowhere" scala> val graph = Graph(vRDD,eRDD,nowhere)
+
+9)graph.vertices.collect.foreach(print) 
+
+10)graph.edges.collect.foreach(print)
+
+
+11) #To check number of airports
+
+val numairports = graph.numVertices
+
+
+12)#To check routes
+val numairports = graph.numEdges
+
+
+13)(graph.edges.filter{case Edge(src,dst,prop)=>prop>1000}.collect.foreach(println))
+
+14)#check triplets
+graph.triplets.take(3).foreach(println)
+
+15)#Indegree
+val i = graph.inDegrees
+
+16)i.collect()
+
+17)#Outdegree
+
+val o= graph.outDegrees scala
+
+o.collect()
+
+17)#Total degree
+
+val t = graph.degrees
+
+t.collect()
